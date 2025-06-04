@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="<%= process.env.SITE_URL %>/assets/styles/styles.css" />
+    <title><%= title || "Skill-Share" %></title>
+  </head>
+  <body>
+    <header><%- include("./components/navbar") %></header>
+    <main><%- include(view) %></main>
+  </body>
+</html>
