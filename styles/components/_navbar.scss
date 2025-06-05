@@ -1,3 +1,58 @@
-.navbar {
+nav.navbar {
     background-color: #1D1D1B;
+  color: white;
+  padding: 1rem;
+
+  & div.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  & a.logo {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+  }
+
+  & .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+
+    & a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+  & .toggle {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      background: #444;
+      position: absolute;
+      right: 0;
+      top: 60px;
+      width: 200px;
+      padding: 1rem;
+    }
+
+    .toggle {
+      display: block;
+    }
+
+    .toggle.active + .nav-links {
+      display: flex;
+    }
+  }
 }
