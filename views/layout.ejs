@@ -30,17 +30,36 @@
       rel="stylesheet"
       href="<%= process.env.SITE_URL %>/assets/styles/styles.css"
     />
+    <% if (title === "Inscription") { %>
+    <link
+      rel="stylesheet"
+      href="<%= process.env.SITE_URL %>/assets/styles/form/form.css"
+    />
+    <% } %>
     <!-- titre -->
     <title><%= title || "Skill-Share" %></title>
   </head>
   <body>
     <header><%- include("./components/navbar") %></header>
 
-    <main><%- include(view) %></main>
+    <main>
+      <h1 id="title" class="background-title"><%= title %></h1>
+      <div class="content"><%- include(view) %></div>
+    </main>
 
     <script
       type="module"
       src="<%= process.env.SITE_URL %>/assets/js/navbar.js"
     ></script>
+    <script
+      type="module"
+      src="<%= process.env.SITE_URL %>/assets/js/h1.js"
+    ></script>
+    <% if (title === "Inscription") { %>
+    <script
+      type="module"
+      src="<%= process.env.SITE_URL %>/assets/js/register.js"
+    ></script>
+    <% } %>
   </body>
 </html>

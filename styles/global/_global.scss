@@ -1,0 +1,33 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    overflow: hidden;
+    background-color: #1d1d1b;
+}
+.background-title  {
+    text-transform: uppercase;
+    color: #F9B233;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transform-origin: center;
+    font-size: 10rem;
+    white-space: nowrap;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.content {
+    min-height: 100vh;
+      position: relative;
+      z-index: 1;
+      display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
