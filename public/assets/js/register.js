@@ -43,6 +43,26 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    // si l'avatar est présent, on crée un FormData
+    const avatarFile = formData.get("avatar");
+    if (avatarFile && avatarFile.size > 0) {
+      const avatarFileData = new FormData();
+      avatarFileData.append("avatar", avatarFile);
+
+      try {
+        const result = await fetchData({
+          route: "/api/upload-avatar",
+          api: API_URL,
+          options: {
+            method: "POST",
+            body: avatarFileData,
+          },
+        });
+      } catch (error) {
+        // messsage utilisateur
+      }
+    }
+
     try {
       const result = await fetchData({
         route: "/api/register",

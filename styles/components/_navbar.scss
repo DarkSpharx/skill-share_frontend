@@ -1,5 +1,4 @@
 nav.navbar {
-  color: white;
   padding: 1rem;
 
   & div.container {
@@ -10,7 +9,7 @@ nav.navbar {
 
   & a.logo {
     font-weight: bold;
-    color: white;
+    color: #F9B233;
     text-decoration: none;
   }
 
@@ -20,7 +19,7 @@ nav.navbar {
     gap: 1rem;
 
     & a {
-      color: white;
+      color: #F9B233;
       text-decoration: none;
     }
   }
