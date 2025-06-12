@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
             body: avatarFileData,
           },
         });
+        jsonData.avatar = result.filename; // on ajoute le nom du fichier à jsonData
       } catch (error) {
         // messsage utilisateur
       }

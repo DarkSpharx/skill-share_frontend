@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'TheFont';
+  src: url("https://garet.typeforward.com/assets/fonts/shared/TFMixVF.woff2") format('woff2');
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -8,52 +13,6 @@ body {
     background-color: #1d1d1b;
 }
 
-.background-title  {
-    text-transform: uppercase;
-    color: #F9B233;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    transform-origin: center;
-    // font-size: 10rem;
-    white-space: nowrap;
-    z-index: -1;
-    pointer-events: none;
-    padding: 0 1rem;
-}
-
-.erica-one-regular {
-  font-family: "Erica One", sans-serif;
-}
-
-
-.home {
-    margin: 40px auto;
-    padding: 32px 24px;
-    border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-    backdrop-filter: blur(12px);
-    text-align: start;
-}
-
-.cta {
-        background: #f9b233;
-        color: #1d1d1b;
-        border: none;
-        padding: 10px 16px;
-        border-radius: 6px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.2s;
-        margin: 20px;
-    }
-
-.cta:hover {
-    background: #C9922A;
-}
-
 .content {
     min-height: 100vh;
     position: relative;
@@ -62,4 +21,65 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.background-title {
+    font-family: 'TheFont', sans-serif;
+    font-size: clamp(10vw, 20vw, 25vh);
+    color: white;
+    text-align: center;
+    animation: letter-breathe 3s ease-in-out infinite;
+    color: #F9B233;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transform-origin: center;
+    white-space: nowrap;
+    z-index: -1;
+    pointer-events: none;
+    padding: 0 1rem;
+    transition: transform 3s ease-in-out;
+}
+
+@keyframes letter-breathe {
+  from,
+  to {
+    font-variation-settings: 'wght' 100;
+  }
+  50% {
+    font-variation-settings: 'wght' 900;
+  }
+}
+
+.erica-one-regular {
+  font-family: "Erica One", sans-serif;
+}
+
+
+// .home {
+//     margin: 40px auto;
+//     padding: 32px 24px;
+//     border-radius: 12px;
+//     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+//     backdrop-filter: blur(12px);
+//     text-align: start;
+// }
+
+.cta {
+        background: #005B71;
+        color: #fff;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 6px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+
+.cta:hover {
+    background: #004556;
 }

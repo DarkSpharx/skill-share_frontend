@@ -22,7 +22,11 @@ app.use(
         connectSrc: ["'self'", "ws://localhost:*", API_URL],
         imgSrc: ["'self'", "data:", "blob:", API_URL],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        fontSrc: [
+          "'self'",
+          "https://fonts.gstatic.com",
+          "https://garet.typeforward.com",
+        ],
         formAction: ["'self'"],
         baseUri: ["'self'"],
       },
