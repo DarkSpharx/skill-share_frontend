@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //redirection si déja connecté
   const registerForm = document.querySelector("#register-form");
   const API_URL = document.querySelector("#api-url").value;
+  const msg = document.querySelector("#verify-msg");
   console.log(API_URL);
   registerForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -73,8 +74,20 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify(jsonData),
         },
       });
+      if (!result.success) {
+        throw new Error(result.error);
+      }
+      if (result.success) {
+        registerForm.reset(); // réinitialisation du formulaire
+        msg.textContent =
+          "Inscription réussie ! Veuillez vérifier votre email pour confirmer votre compte.";
+        msg.style.color = "red";
+        msg.style.textAlign = "center";
+      }
     } catch (error) {
-      // messsage utilisateur
+      msg.textContent = error.message;
+      msg.style.color = "red";
+      msg.style.textAlign = "center";
     }
   });
 });

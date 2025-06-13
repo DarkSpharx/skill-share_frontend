@@ -21,6 +21,12 @@ nav.navbar {
     & a {
       color: #F9B233;
       text-decoration: none;
+      text-transform: uppercase;
+      // font-weight: bolder;
+      cursor: pointer;
+    }
+    & a:hover {
+      color: #C9922A;
     }
   }
 
@@ -41,8 +47,9 @@ nav.navbar {
       position: absolute;
       right: 0;
       top: 60px;
-      width: 200px;
+      width: auto;
       padding: 1rem;
+      z-index: 1000;
     }
 
     .toggle {

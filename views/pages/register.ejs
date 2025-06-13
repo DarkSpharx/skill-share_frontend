@@ -7,6 +7,8 @@
     enctype="multipart/form-data"
     id="register-form"
   >
+    <div id="verify-msg"></div>
+
     <input type="hidden" id="api-url" value="<%= typeof API_URL !== "undefined"
     ? API_URL : "" %>"/>
 
@@ -49,7 +51,7 @@
         name="avatar"
         accept="image/png, image/jpeg"
       />
-      <span class="" data-error="avatar"></span>
+      <span class="btn-form" data-error="avatar"></span>
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">S'inscrire</button>

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!token) {
     msg.textContent = "Token non trouvé!";
-    msg.style.color = "red";
+    msg.style.color = "white";
     return;
   }
 
@@ -27,12 +27,20 @@ document.addEventListener("DOMContentLoaded", async () => {
       loginLink.style.display = "block";
     }
   } catch (error) {
-    msg.textContent =
+    // Crée un paragraphe pour le message d'erreur
+    const errorMsg = document.createElement("p");
+    errorMsg.textContent =
       "Problème dans la vérification de votre email, veuillez contacter l'administrateur : ";
+    errorMsg.style.marginBottom = "25px"; // Ajout du margin-bottom
+    msg.textContent = ""; // Vide le contenu précédent
+    msg.append(errorMsg);
+
     const contactButton = document.createElement("a");
     contactButton.setAttribute("href", "mailto:adminfred@skillshare.com");
     contactButton.textContent = "Contactez-nous";
+    contactButton.className = "btn-primary";
+    contactButton.style.marginTop = "20px";
     msg.append(contactButton);
-    msg.style.color = "red";
+    msg.style.color = "white";
   }
 });
