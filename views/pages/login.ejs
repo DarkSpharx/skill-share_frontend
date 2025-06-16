@@ -1,0 +1,53 @@
+<!-- si traitement fichier => enctype="multipart/form-data" -->
+<!-- pour le traitement des données dans le JS on utilise new FormData()  -->
+<section class="login">
+  <form method="POST" action="" id="login-form">
+    <!-- <div id="verify-msg"></div> -->
+
+    <div id="verify-msg"></div>
+
+    <input type="hidden" id="api-url" value="<%= typeof API_URL !== "undefined"
+    ? API_URL : "" %>"/>
+
+    <div class="form-group">
+      <label for="email">Adresse email</label>
+      <input
+        type="text"
+        autocomplete="current-username"
+        class="form-control"
+        id="email"
+        name="email"
+        placeholder="Entrez votre adresse email"
+      />
+      <span class="" data-error="email"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input
+        type="password"
+        autocomplete="current-password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Entrez votre mot de passe"
+      />
+      <span class="" data-error="password"></span>
+    </div>
+
+    <div class="form-group">
+      <p class="mt-3" style="text-align: center; color: #fff;">
+        Mot de passe oublié ? <a href="/reset-password" style="color: #F9B233; text-transform: uppercase;">Réinitialisez-le</a>
+      </p>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Se connecter</button>
+
+    <div class="form-group" style="margin-top: 25px;">
+      <p class="mt-3" style="text-align: center; color: #fff;">
+        Pas encore inscrit ? <a href="/register" style="color: #F9B233; text-transform: uppercase;"">Inscrivez-vous</a>
+      </p>
+    </div>
+    
+  </form>
+</section>

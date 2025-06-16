@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
   res.render("layout", { title: "Accueil", view: "pages/home" });
 });
 
-router.get("/inscription", (req, res) => {
+router.get("/register", (req, res) => {
   res.render("layout", {
     title: "Inscription",
     view: "pages/register",
@@ -21,6 +21,30 @@ router.get("/verify-email", (req, res) => {
   res.render("layout", {
     title: "Vérification email",
     view: "pages/verify-email",
+    ...globals,
+  });
+});
+
+router.get("/login", (req, res) => {
+  res.render("layout", {
+    title: "Connexion",
+    view: "pages/login",
+    ...globals,
+  });
+});
+
+router.get("/reset-password", (req, res) => {
+  res.render("layout", {
+    title: "Réinitialisation mot de passe",
+    view: "pages/reset-password",
+    ...globals,
+  });
+});
+
+router.get("/account", (req, res) => {
+  res.render("layout", {
+    title: "Profile",
+    view: "pages/account",
     ...globals,
   });
 });

@@ -90,4 +90,106 @@ document.addEventListener("DOMContentLoaded", () => {
       msg.style.textAlign = "center";
     }
   });
+
+  const fileContainer = document.getElementById("fileContainer");
+  const fileInput = document.getElementById("avatar");
+
+  if (fileContainer && fileInput) {
+    fileContainer.addEventListener("click", (e) => {
+      // Empêche le clic sur l'input de relancer le clic (boucle)
+      if (e.target !== fileInput) {
+        fileInput.click();
+      }
+    });
+  }
+
+  const filePreview = document.getElementById("filePreview");
+  const preview = document.getElementById("preview");
+  const fileInfo = document.getElementById("fileInfo");
+  const errorSpan = document.querySelector('[data-error="avatar"]');
+
+  // Drag and drop functionality
+  fileContainer.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    fileContainer.classList.add("drag-over");
+  });
+
+  fileContainer.addEventListener("dragleave", (e) => {
+    e.preventDefault();
+    fileContainer.classList.remove("drag-over");
+  });
+
+  fileContainer.addEventListener("drop", (e) => {
+    e.preventDefault();
+    fileContainer.classList.remove("drag-over");
+
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      fileInput.files = files;
+      handleFileSelect(files[0]);
+    }
+  });
+
+  // File input change
+  fileInput.addEventListener("change", (e) => {
+    if (e.target.files.length > 0) {
+      handleFileSelect(e.target.files[0]);
+    }
+  });
+
+  function handleFileSelect(file) {
+    // Clear previous error
+    errorSpan.textContent = "";
+    fileContainer.classList.remove("error");
+
+    // Validate file
+    const errors = validateFile(file);
+    if (errors.length > 0) {
+      errorSpan.textContent = errors.join(" ");
+      fileContainer.classList.add("error");
+      fileContainer.classList.remove("has-file");
+      filePreview.classList.remove("show");
+      return;
+    }
+
+    // Show file preview
+    fileContainer.classList.add("has-file", "upload-success");
+    setTimeout(() => fileContainer.classList.remove("upload-success"), 500);
+
+    // Display file info
+    const fileSize = (file.size / 1024).toFixed(1);
+    fileInfo.textContent = `${file.name} (${fileSize} KB)`;
+
+    // Show image preview
+    if (file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        preview.src = e.target.result;
+        filePreview.classList.add("show");
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  function validateFile(file) {
+    const errors = [];
+    const maxSize = 2 * 1024 * 1024; // 2MB
+
+    if (!file.type.match(/image\/(png|jpg|jpeg)$/)) {
+      errors.push("Avatar must be an image file (PNG, JPG, JPEG).");
+    }
+
+    if (file.size > maxSize) {
+      errors.push(`Avatar must be less than 2MB.`);
+    }
+
+    return errors;
+  }
+
+  // Simulate form validation for demo
+  setTimeout(() => {
+    // Uncomment to test error state
+    // errorSpan.textContent = 'File too large';
+    // fileContainer.classList.add('error');
+  }, 100);
 });

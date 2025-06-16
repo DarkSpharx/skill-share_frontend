@@ -42,7 +42,7 @@
       <span class="" data-error="password"></span>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="avatar">Avatar (image JPG/PNG)</label>
       <input
         type="file"
@@ -52,6 +52,42 @@
         accept="image/png, image/jpeg"
       />
       <span class="btn-form" data-error="avatar"></span>
+    </div> -->
+
+    <div class="form-group">
+      <label for="avatar">Avatar (image JPG/PNG)</label>
+      <div class="file-input-container" id="fileContainer">
+        <input
+          type="file"
+          class="form-control"
+          id="avatar"
+          name="avatar"
+          accept="image/png, image/jpeg"
+        />
+        <div class="file-input-content">
+          <div class="file-input-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17,8 12,3 7,8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+          </div>
+          <div class="file-input-text">
+            <strong>Click to upload</strong> or drag and drop
+          </div>
+          <div class="file-input-hint">PNG, JPG, JPEG, Gif up to 2MB</div>
+        </div>
+        <div class="file-preview" id="filePreview">
+          <img id="preview" src="" alt="Preview" />
+          <div class="file-info" id="fileInfo"></div>
+        </div>
+      </div>
+      <span class="" data-error="avatar"></span>
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">S'inscrire</button>

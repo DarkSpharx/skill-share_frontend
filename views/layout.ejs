@@ -30,17 +30,35 @@
       rel="stylesheet"
       href="<%= process.env.SITE_URL %>/assets/styles/styles.css"
     />
+    <!-- styles spécifiques pour le formulaire d'inscription -->
     <% if (title === "Inscription") { %>
     <link
       rel="stylesheet"
       href="<%= process.env.SITE_URL %>/assets/styles/form/form.css"
     />
-    <% } %> <% if (title === "Vérification email") { %>
+    <% } %>
+    <!-- styles spécifiques pour le formulaire de connexion -->
+    <% if (title === "Connexion") { %>
+    <link
+      rel="stylesheet"
+      href="<%= process.env.SITE_URL %>/assets/styles/form/form.css"
+    />
+    <% } %>
+    <!-- styles spécifiques pour la vérification email -->
+    <% if (title === "Vérification email") { %>
     <link
       rel="stylesheet"
       href="<%= process.env.SITE_URL %>/assets/styles/verify-email/verify-email.css"
     />
     <% } %>
+    <!-- styles spécifiques pour la réinitialisation de mot de passe -->
+    <% if (title === "Réinitialisation mot de passe") { %>
+    <link
+      rel="stylesheet"
+      href="<%= process.env.SITE_URL %>/assets/styles/reset-password/reset-password.css"
+    />
+    <% } %>
+
     <!-- polices -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -74,15 +92,32 @@
       type="module"
       src="<%= process.env.SITE_URL %>/assets/js/h1.js"
     ></script>
+    <!-- JS pour la page d'inscription -->
     <% if (title === "Inscription") { %>
     <script
       type="module"
       src="<%= process.env.SITE_URL %>/assets/js/register.js"
     ></script>
-    <% } %> <% if (title === "Vérification email") { %>
+    <% } %>
+    <!-- JS pour la page de vérification email -->
+    <% if (title === "Vérification email") { %>
     <script
       type="module"
       src="<%= process.env.SITE_URL %>/assets/js/verify-email.js"
+    ></script>
+    <% } %>
+    <!-- JS pour la page de connexion -->
+    <% if (title === "Connexion") { %>
+    <script
+      type="module"
+      src="<%= process.env.SITE_URL %>/assets/js/login.js"
+    ></script>
+    <% } %>
+    <!-- JS pour la page de réinitialisation de mot de passe -->
+    <% if (title === "reset-password") { %>
+    <script
+      type="module"
+      src="<%= process.env.SITE_URL %>/assets/js/reset-password.js"
     ></script>
     <% } %>
   </body>

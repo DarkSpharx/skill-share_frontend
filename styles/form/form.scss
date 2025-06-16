@@ -1,5 +1,6 @@
-.register {
+.register, .login {
     max-width: 400px;
+    min-width: 300px;
     margin: 40px auto;
     padding: 32px 24px;
     border-radius: 12px;
@@ -82,4 +83,114 @@
     input.error-input {
         border-color: red;
     }
+}
+
+.file-input-container {
+  border: 2px dashed #fff;
+  border-radius: 10px;
+  padding: 24px 16px;
+  background: transparent;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.2s, background 0.2s;
+  margin-bottom: 10px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &.drag-over {
+    border-color: #f9b233;
+    background: #1d1d1b;
+  }
+
+  &.error {
+    color: white;
+    background-color: red;
+    font-size: small;
+    padding: 4px 8px;
+    border-radius: 6px;
+  }
+
+  &.has-file {
+    border-style: solid;
+    border-color: green;
+  }
+
+  &.upload-success {
+    animation: upload-success 0.5s;
+  }
+}
+
+@keyframes upload-success {
+  0% { box-shadow: 0 0 0 0 green; }
+  100% { box-shadow: 0 0 0 8px rgba(76, 175, 80, 0); }
+}
+
+.file-input-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.file-input-icon {
+  margin-bottom: 8px;
+  svg {
+    width: 36px;
+    height: 36px;
+    color: #f9b233;
+    stroke: #f9b233;
+  }
+}
+
+.file-input-text {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  color: #fff;
+}
+
+.file-input-hint {
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+input[type="file"].form-control {
+  display: none;
+}
+
+.file-preview {
+  display: none;
+  margin-top: 12px;
+  flex-direction: column;
+  align-items: center;
+
+  &.show {
+    display: flex;
+  }
+}
+
+.file-preview img {
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.file-info {
+  font-size: 0.8rem;
+  color: #fff;
+  word-break: break-all;
+}
+
+.error[data-error="avatar"] {
+  display: block;
+  margin-top: 8px;
+  color: #fff;
+  background: red;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.95em;
 }
