@@ -1,12 +1,14 @@
 <nav class="navbar">
   <div class="container">
-    <a href="/" class="logo">Skill-Share</a>
+    <a href="/" class="logo">SkillShare</a>
     <button class="toggle">&#9776;</button>
+    <% if (title !== "404") { %>
     <ul class="nav-links">
       <li><a href="/register">Inscription</a></li>
-      <p style="color: white">/</p>
+      <p style="color: #f9b233">|</p>
       <li><a href="/login">Connexion</a></li>
-      <li><a href="/account">Profil</a></li>
+      <li><a href="/shareskill">Partage de compétences</a></li>
     </ul>
+    <% } %>
   </div>
 </nav>

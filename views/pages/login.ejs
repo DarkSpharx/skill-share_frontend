@@ -1,6 +1,9 @@
 <!-- si traitement fichier => enctype="multipart/form-data" -->
 <!-- pour le traitement des données dans le JS on utilise new FormData()  -->
 <section class="login">
+
+  
+
   <form method="POST" action="" id="login-form">
     <!-- <div id="verify-msg"></div> -->
 
@@ -37,17 +40,22 @@
 
     <div class="form-group">
       <p class="mt-3" style="text-align: center; color: #fff;">
-        Mot de passe oublié ? <a href="/reset-password" style="color: #F9B233; text-transform: uppercase;">Réinitialisez-le</a>
+        Mot de passe oublié ? 
+        <br>
+        <a href="/reset-password" style="color: #F9B233; text-transform: uppercase; text-decoration: underline;">Réinitialiser mot de passe</a>
       </p>
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">Se connecter</button>
 
-    <div class="form-group" style="margin-top: 25px;">
-      <p class="mt-3" style="text-align: center; color: #fff;">
-        Pas encore inscrit ? <a href="/register" style="color: #F9B233; text-transform: uppercase;"">Inscrivez-vous</a>
-      </p>
-    </div>
     
+
   </form>
+  <div class="form-group" style="margin: 25px 0;">
+    <p class="mt-3" style="text-align: center; color: #fff;">
+      Pas encore de compte ?
+      <br>
+      <a href="/register" style="color: #F9B233; text-transform: uppercase; text-decoration: underline;"">Inscrivez-vous</a>
+    </p>
+  </div>
 </section>

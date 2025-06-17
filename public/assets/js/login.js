@@ -5,7 +5,7 @@ import { validateRegisterForm } from "../../services/validate.js";
 document.addEventListener("DOMContentLoaded", () => {
   // rediriger la page si l'utilisateur est déjà connecté
   if (AuthManager.isLoggedIn()) {
-    window.location.href = "/";
+    // window.location.href = "/";
     return;
   }
 
@@ -65,6 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // stockage du token dans le localStorage
         localStorage.setItem("JWTtoken", result.token);
         localStorage.setItem("user", JSON.stringify(result.user));
+        // Ajoute cette ligne pour stocker le rôle si présent
+        if (result.user && result.user.role) {
+          localStorage.setItem("role", JSON.stringify(result.user.role));
+        }
+        document.cookie = `JWTtoken=${result.token}; path=/; SameSite=Lax`;
 
         // message de succès et redirection
         msg.textContent = `Bienvenu ${result.user.username} !`;
@@ -75,8 +80,10 @@ document.addEventListener("DOMContentLoaded", () => {
         AuthManager.updateNavbar();
 
         setTimeout(() => {
-          window.location.href = "/";
-        }, 2000); // 2 secondes
+          const params = new URLSearchParams(window.location.search);
+          const redirect = params.get("redirect") || "/";
+          window.location.href = redirect;
+        }, 2000);
       }
     } catch (error) {
       msg.textContent = error.message;

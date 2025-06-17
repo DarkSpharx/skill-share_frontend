@@ -26,7 +26,6 @@ body {
 .background-title {
     font-family: 'TheFont', sans-serif;
     font-size: clamp(10vw, 20vw, 25vh);
-    color: white;
     text-align: center;
     animation: letter-breathe 3s ease-in-out infinite;
     color: #F9B233;
@@ -57,14 +56,16 @@ body {
 }
 
 
-// .home {
-//     margin: 40px auto;
-//     padding: 32px 24px;
-//     border-radius: 12px;
-//     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-//     backdrop-filter: blur(12px);
-//     text-align: start;
-// }
+.notfound {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#space-home{
+  min-height: 50vh;
+}
 
 .cta {
         background: #005B71;
