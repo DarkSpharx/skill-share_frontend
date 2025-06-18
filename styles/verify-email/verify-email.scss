@@ -3,7 +3,7 @@
 .verify {
   padding: $spacing-xl;
 
-  .message-container {
+  .message-container, .access-messages {
     color: white;
     max-width: 400px;
     margin: 40px auto;
@@ -14,7 +14,7 @@
     text-align: center;
   }
 
-  #verify-msg {
+  #verify-msg, #access-msg {
     margin-bottom: $spacing-md;
     
   }

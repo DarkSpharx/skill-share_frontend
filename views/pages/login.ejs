@@ -5,9 +5,12 @@
   
 
   <form method="POST" action="" id="login-form">
-    <!-- <div id="verify-msg"></div> -->
 
     <div id="verify-msg"></div>
+
+    <div class="access-messages" style="display:none;">
+      <div id="access-msg"></div>
+    </div>
 
     <input type="hidden" id="api-url" value="<%= typeof API_URL !== "undefined"
     ? API_URL : "" %>"/>

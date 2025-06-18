@@ -8,7 +8,7 @@ export async function fetchData({ route, api, options = {} }) {
   };
 
   // Ajouter le token JWT si présent
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("JWTtoken");
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
   }

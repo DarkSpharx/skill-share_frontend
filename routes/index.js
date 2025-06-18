@@ -61,45 +61,20 @@ router.get("/shareskill", (req, res) => {
 });
 
 router.get("/dashboard", (req, res) => {
-  // Récupère le token JWT depuis le cookie ou le header Authorization
-  const token =
-    req.cookies?.JWTtoken ||
-    req.headers.authorization?.replace("Bearer ", "") ||
-    null;
+  res.render("layout", {
+    title: "Dashboard",
+    view: "pages/dashboard",
+    ...globals,
+  });
+});
 
-  if (!token) {
-    // Pas de token, accès refusé
-    return res.status(404).render("layout", {
-      title: "404",
-      view: "pages/404",
-    });
-  }
-
-  try {
-    // Vérifie et décode le token
-    const payload = jwt.verify(token, JWT_SECRET);
-
-    // Vérifie le rôle
-    if (
-      payload &&
-      payload.role &&
-      Array.isArray(payload.role) &&
-      payload.role.includes("ROLE_ADMIN")
-    ) {
-      return res.render("layout", {
-        title: "Dashboard",
-        view: "pages/dashboard",
-        ...globals,
-      });
-    }
-  } catch (e) {
-    // Token invalide ou expiré
-  }
-
-  // Si pas admin ou erreur, affiche la 404
+// Cette route doit être placée en dernier pour capturer toutes les routes non définies
+router.use((req, res, next) => {
+  console.log("Route 404 activée pour:", req.path); // Log pour le débogage
   return res.status(404).render("layout", {
     title: "404",
     view: "pages/404",
+    ...globals,
   });
 });
 

@@ -1,4 +1,64 @@
-<section class="account">
+<!-- <section class="account">
   <a class="cta" href="#">modifier vos informations personnelles</a>
   <div id="space-home"></div>
+</section> -->
+
+<section class="account">
+  <h2>Modifier Profil</h2>
+  <div id="verify-msg"></div>
+  <form action="" id="info-form">
+    <input type="hidden" id="api-url" value="<%= typeof API_URL !== "undefined"
+    ? API_URL : "" %>"/>
+
+    <div class="form-grid">
+      <h3>Modifier Nom d'utilisateur</h3>
+      <div class="form-group">
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" class="form-control" id="username" name="username" />
+        <span class="" data-error="username"></span>
+      </div>
+
+      Voulez-vous mettre a jour votre Nom d'utilisateur
+      <button type="submit" class="btn btn-primary mt-3">Valider</button>
+    </div>
+
+    <div class="form-grid">
+      <h3>Modifier Avatar</h3>
+      <div class="form-group">
+        <label for="avatar">Avatar (image JPG/PNG)</label>
+        <div class="file-input-container" id="fileContainer">
+          <input
+            type="file"
+            class="form-control"
+            id="avatar"
+            name="avatar"
+            accept="image/png, image/jpeg"
+          />
+          <div class="file-input-content">
+            <div class="file-input-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17,8 12,3 7,8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+            </div>
+            <div class="file-input-text">
+              <strong>Click to upload</strong> or drag and drop
+            </div>
+            <div class="file-input-hint">PNG, JPG, JPEG, Gif up to 2MB</div>
+          </div>
+          <div class="file-preview" id="filePreview">
+            <img id="preview" src="" alt="Preview" />
+            <div class="file-info" id="fileInfo"></div>
+          </div>
+        </div>
+        <span class="" data-error="avatar"></span>
+      </div>
+    </div>
+  </form>
 </section>

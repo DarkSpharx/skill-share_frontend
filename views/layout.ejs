@@ -38,7 +38,7 @@
     />
     <% } %>
     <!-- styles spécifiques pour le formulaire de connexion -->
-    <% if (title === "Connexion") { %>
+    <% if (title === "Connexion" || title === "Profil") { %>
     <link
       rel="stylesheet"
       href="<%= process.env.SITE_URL %>/assets/styles/form/form.css"
@@ -126,6 +126,20 @@
     <script
       type="module"
       src="<%= process.env.SITE_URL %>/assets/js/reset-password.js"
+    ></script>
+    <% } %>
+    <!-- JS pour la page de Dashboard -->
+    <% if (title === "Dashboard") { %>
+    <script
+      type="module"
+      src="<%= process.env.SITE_URL %>/assets/js/dashboard.js"
+    ></script>
+    <% } %>
+    <!-- JS pour la page de Profil -->
+    <% if (title === "Profil") { %>
+    <script
+      type="module"
+      src="<%= process.env.SITE_URL %>/assets/js/account.js"
     ></script>
     <% } %>
   </body>

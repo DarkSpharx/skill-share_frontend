@@ -3,7 +3,6 @@ import helmet from "helmet";
 import path from "path";
 import indexRoutes from "./routes/index.js";
 import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
 
 // configuration du .env
 dotenv.config();
@@ -11,7 +10,6 @@ dotenv.config();
 // création de l'application
 const app = express();
 const API_URL = process.env.API_URL;
-app.use(cookieParser());
 
 app.use(
   helmet({

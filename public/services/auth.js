@@ -1,20 +1,34 @@
 export class AuthManager {
-  static isLoggedIn() {
+  static isLoggedIn(message) {
+    // return !!localStorage.getItem('JWTtoken');
     const token = localStorage.getItem("JWTtoken");
-    // routes nécessitant une connexion
-    const protectedPaths = ["/account"];
-    const currentPath = window.location.pathname;
+    // Routes sans connexion
 
     if (!token || this.isTokenExpired(token)) {
-      this.logout();
-      if (protectedPaths.includes(currentPath)) {
-        window.location.href = `/login?redirect=${encodeURIComponent(
-          currentPath
-        )}`;
-      }
+      this.redirectUserToLogin(message);
       return false;
     }
     return true;
+  }
+
+  static redirectUserToLogin(message) {
+    // console.log(message);
+    const notAllowedPaths = ["%2Fcompetences", "%2Faccount", "%2Fdashboard"];
+    const currentPath = encodeURIComponent(window.location.pathname);
+    this.logout();
+    if (notAllowedPaths.includes(currentPath)) {
+      window.location.href = `/login?redirect=${currentPath}${
+        message ? `&message=${encodeURIComponent(message)}` : ""
+      }`;
+    }
+    return false;
+  }
+
+  static hasRole(role) {
+    const token = localStorage.getItem("JWTtoken");
+    if (!token) return false;
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return payload.role.includes(`ROLE_${role}`);
   }
 
   // Vérifie si le token est expiré
@@ -44,7 +58,8 @@ export class AuthManager {
     }
     const isLoggedIn = this.isLoggedIn();
     const user = this.getUser();
-    const isAdmin = this.isAdmin();
+    // const isAdmin = this.isAdmin();
+    const isAdmin = this.hasRole("ADMIN");
 
     if (isLoggedIn && user) {
       navLinks.innerHTML = `
@@ -68,20 +83,26 @@ export class AuthManager {
     }
   }
 
-  static isAdmin() {
-    const roleStr = localStorage.getItem("role");
-    if (!roleStr) return false;
-    try {
-      const roles = JSON.parse(roleStr);
-      return Array.isArray(roles) && roles.includes("ROLE_ADMIN");
-    } catch {
+  static checkAdminAccess() {
+    this.isLoggedIn();
+    console.log(this.hasRole("ADMIN"));
+
+    if (!this.hasRole("ADMIN")) {
+      console.warn("Accés refusé : utilisateur non admin");
+      this.redirectUserToLogin(
+        "Vous devez etre admin pour accéder au dashboard"
+      );
       return false;
     }
+    return true;
   }
 
   static logout() {
     localStorage.removeItem("JWTtoken");
     localStorage.removeItem("user");
     localStorage.removeItem("role");
+
+    document.cookie =
+      "JWTtoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   }
 }
