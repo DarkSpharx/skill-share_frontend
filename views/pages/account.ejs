@@ -4,26 +4,43 @@
 </section> -->
 
 <section class="account">
-  <h2>Modifier Profil</h2>
-  <div id="verify-msg"></div>
+  <h2>
+    Profil de
+    <span id="profile-title"></span>
+  </h2>
+  <div class="verify-msg" style="text-align: center"></div>
   <form action="" id="info-form">
     <input type="hidden" id="api-url" value="<%= typeof API_URL !== "undefined"
     ? API_URL : "" %>"/>
 
     <div class="form-grid">
-      <h3>Modifier Nom d'utilisateur</h3>
       <div class="form-group">
-        <label for="username">Nom d'utilisateur</label>
+        <label for="password"> Modifier votre mot de passe </label>
+        <a href="/reset-password" class="reset-link">Cliquez-ici</a>
+      </div>
+      <div class="form-group">
+        <label for="username">Mofifier votre nom d'utilisateur</label>
         <input type="text" class="form-control" id="username" name="username" />
         <span class="" data-error="username"></span>
       </div>
 
-      Voulez-vous mettre a jour votre Nom d'utilisateur
+      <div class="form-group">
+        <label for="email">Modifier votre adresse email</label>
+        <input
+          type="text"
+          autocomplete="username"
+          class="form-control"
+          id="email"
+          name="email"
+        />
+        <span class="" data-error="email"></span>
+      </div>
+
       <button type="submit" class="btn btn-primary mt-3">Valider</button>
     </div>
+  </form>
 
-    <div class="form-grid">
-      <h3>Modifier Avatar</h3>
+  <!-- <div class="form-grid">
       <div class="form-group">
         <label for="avatar">Avatar (image JPG/PNG)</label>
         <div class="file-input-container" id="fileContainer">
@@ -59,6 +76,28 @@
         </div>
         <span class="" data-error="avatar"></span>
       </div>
+    </div> -->
+
+  <div class="form-grid">
+    <div class="profile-card avatar-section">
+      <label>Photo de profil</label>
+      <div class="avatar-container" style="text-align: center">
+        <img
+          id="user-avatar"
+          src=""
+          alt="Avatar"
+          class="avatar"
+          style="max-height: 200px"
+        />
+      </div>
+      <form id="avatar-form">
+        <div class="file-input-wrapper">
+          <input type="file" name="avatar" id="avatar-input" accept="image/*" />
+          <button type="submit" class="btn btn-primary">
+            Modifier l'avatar
+          </button>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 </section>

@@ -44,8 +44,14 @@ export class AuthManager {
 
   // Récupère l'utilisateur courant
   static getUser() {
-    const userStr = localStorage.getItem("user");
-    return userStr ? JSON.parse(userStr) : null;
+    const token = localStorage.getItem("JWTtoken");
+    if (!token) return false;
+    const userStr = JSON.parse(localStorage.getItem("user"));
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    // console.log(payload);
+    const completeUser = { ...userStr, ...payload };
+    console.log(completeUser);
+    return userStr && payload ? completeUser : null;
   }
 
   // Met à jour la navbar selon l'état de connexion

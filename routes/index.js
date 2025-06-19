@@ -48,6 +48,7 @@ router.get("/account", (req, res) => {
   res.render("layout", {
     title: "Profil",
     view: "pages/account",
+    username: req.user ? req.user.username : "", // Ajoute cette ligne
     ...globals,
   });
 });

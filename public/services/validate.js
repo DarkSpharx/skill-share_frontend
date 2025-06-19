@@ -12,16 +12,19 @@ export function validateRegisterForm(form) {
     `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
   );
 
-  const email = formData.get("email").trim();
-  if (!emailRegex.test(email)) {
+  const email = formData.get("email")?.trim();
+  if (formData.get("email") !== null && !emailRegex.test(email)) {
     errors.email = "L'adresse e-mail n'est pas valide.";
   }
   // Regex mot de passe : 12 caractères minimum, 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial
   const passwordRegexPattern =
     /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};':"\\|,.<>/?`~])[A-Za-z\d!@#$%^&*()_\-+=\[\]{};':"\\|,.<>/?`~]{12,}$/;
   const strongPasswordRegex = new RegExp(passwordRegexPattern);
-  const password = formData.get("password").trim();
-  if (!strongPasswordRegex.test(password)) {
+  const password = formData.get("password")?.trim();
+  if (
+    formData.get("password") !== null &&
+    !strongPasswordRegex.test(password)
+  ) {
     errors.password =
       "Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.";
   }

@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //redirection si déja connecté
   const registerForm = document.querySelector("#register-form");
   const API_URL = document.querySelector("#api-url").value;
-  const msg = document.querySelector("#verify-msg");
+  const msg = document.querySelector(".verify-msg");
   console.log(API_URL);
   registerForm.addEventListener("submit", async (e) => {
     e.preventDefault();

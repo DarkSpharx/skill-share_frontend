@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const loginform = document.querySelector("#login-form");
-  const msg = document.querySelector("#verify-msg");
+  const msg = document.querySelector(".verify-msg");
   const API_URL = document.querySelector("#api-url").value;
 
   loginform.addEventListener("submit", async (e) => {
@@ -85,10 +85,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // stockage du token dans le localStorage
         localStorage.setItem("JWTtoken", result.token);
         localStorage.setItem("user", JSON.stringify(result.user));
-        // Ajoute cette ligne pour stocker le rôle si présent
-        if (result.user && result.user.role) {
-          localStorage.setItem("role", JSON.stringify(result.user.role));
-        }
+
+        // // Ajoute cette ligne pour stocker le rôle si présent
+        // if (result.user && result.user.role) {
+        //   localStorage.setItem("role", JSON.stringify(result.user.role));
+        // }
 
         // message de succès et redirection
         msg.textContent = `Bienvenu ${result.user.username} !`;

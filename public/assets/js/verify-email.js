@@ -3,7 +3,7 @@ import { fetchData } from "../../lib/fetchData.js";
 document.addEventListener("DOMContentLoaded", async () => {
   const params = new URLSearchParams(window.location.search);
   const token = params.get("token");
-  const msg = document.querySelector("#verify-msg");
+  const msg = document.querySelector(".verify-msg");
   const API_URL = document.querySelector("#api-url").value;
   const loginLink = document.querySelector("#login-link");
 

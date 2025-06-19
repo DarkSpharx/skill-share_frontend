@@ -14,9 +14,10 @@
     text-align: center;
   }
 
-  #verify-msg, #access-msg {
+  .verify-msg, #access-msg {
     margin-bottom: $spacing-md;
-    
+    text-align: center;
+    width: 100%;
   }
 
   #login-link {
