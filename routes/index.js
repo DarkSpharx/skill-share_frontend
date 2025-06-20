@@ -40,6 +40,7 @@ router.get("/reset-password", (req, res) => {
   res.render("layout", {
     title: "Réinitialisation mot de passe",
     view: "pages/reset-password",
+    token: req.query.token,
     ...globals,
   });
 });

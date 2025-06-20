@@ -2,45 +2,53 @@
   <a class="cta" href="#">modifier vos informations personnelles</a>
   <div id="space-home"></div>
 </section> -->
-
+<input type="hidden" id="api-url" value="<%= typeof API_URL !== "undefined" ?
+API_URL : "" %>"/>
 <section class="account">
   <h2>
     Profil de
     <span id="profile-title"></span>
   </h2>
   <div class="verify-msg" style="text-align: center"></div>
-  <form action="" id="info-form">
-    <input type="hidden" id="api-url" value="<%= typeof API_URL !== "undefined"
-    ? API_URL : "" %>"/>
+  <!-- div grid -->
+  <div id="info-form">
+    <!-- div bloc n1 de la grid -->
+    <form action="">
+      <div class="form-grid">
+        <!-- div modifier mot de passe -->
+        <div class="form-group">
+          <label for="password"> Modifier votre mot de passe </label>
+          <a href="/reset-password" class="reset-link">Cliquez-ici</a>
+        </div>
+        <!-- div modifier nom utilisateur -->
+        <div class="form-group">
+          <label for="username">Mofifier votre nom d'utilisateur</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+          />
+          <span class="" data-error="username"></span>
+        </div>
+        <!-- div modifier email -->
+        <div class="form-group">
+          <label for="email">Modifier votre adresse email</label>
+          <input
+            type="text"
+            autocomplete="username"
+            class="form-control"
+            id="email"
+            name="email"
+          />
+          <span class="" data-error="email"></span>
+        </div>
 
-    <div class="form-grid">
-      <div class="form-group">
-        <label for="password"> Modifier votre mot de passe </label>
-        <a href="/reset-password" class="reset-link">Cliquez-ici</a>
+        <button type="submit" class="btn btn-primary mt-3">Valider</button>
       </div>
-      <div class="form-group">
-        <label for="username">Mofifier votre nom d'utilisateur</label>
-        <input type="text" class="form-control" id="username" name="username" />
-        <span class="" data-error="username"></span>
-      </div>
+    </form>
 
-      <div class="form-group">
-        <label for="email">Modifier votre adresse email</label>
-        <input
-          type="text"
-          autocomplete="username"
-          class="form-control"
-          id="email"
-          name="email"
-        />
-        <span class="" data-error="email"></span>
-      </div>
-
-      <button type="submit" class="btn btn-primary mt-3">Valider</button>
-    </div>
-  </form>
-
-  <!-- <div class="form-grid">
+    <!-- <div class="form-grid">
       <div class="form-group">
         <label for="avatar">Avatar (image JPG/PNG)</label>
         <div class="file-input-container" id="fileContainer">
@@ -78,26 +86,53 @@
       </div>
     </div> -->
 
-  <div class="form-grid">
-    <div class="profile-card avatar-section">
-      <label>Photo de profil</label>
-      <div class="avatar-container" style="text-align: center">
-        <img
-          id="user-avatar"
-          src=""
-          alt="Avatar"
-          class="avatar"
-          style="max-height: 200px"
-        />
-      </div>
-      <form id="avatar-form">
-        <div class="file-input-wrapper">
-          <input type="file" name="avatar" id="avatar-input" accept="image/*" />
-          <button type="submit" class="btn btn-primary">
-            Modifier l'avatar
-          </button>
+    <!-- div bloc n2 de la grid -->
+    <div class="form-grid">
+      <div class="form-group">
+        <div class="profile-card avatar-section">
+          <label style="margin-top: 20px">Photo de profil</label>
+          <div class="avatar-container" style="text-align: center">
+            <img
+              id="user-avatar"
+              src=""
+              alt="Avatar"
+              class="avatar"
+              style="max-height: 200px"
+            />
+          </div>
         </div>
-      </form>
+
+        <form id="avatar-form">
+          <div class="file-input-wrapper">
+            <input
+              type="file"
+              name="avatar"
+              id="avatar-input"
+              accept="image/*"
+            />
+            <button type="submit" class="btn btn-primary">
+              Modifier l'avatar
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
+
+    <!-- div bloc n3 de la grid -->
+    <!-- Section Sécurité  -->
+    <div class="form-grid">
+      <div class="profile-card security">
+        <h3>Sécurité</h3>
+        <div class="password-reset">
+          <p>
+            Pour des raisons de sécurité, la modification du mot de passe se
+            fait via un lien envoyé par email.
+          </p>
+          <button id="request-reset-btn" class="btn btn-primary">
+            Recevoir un lien de réinitialisation
+          </button>
+          <div id="reset-msg"></div>
+        </div>
+      </div>
+    </div>
 </section>

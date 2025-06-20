@@ -1,58 +1,66 @@
-import { fetchData } from "../../lib/fetchData.js";
+import { fetchData } from "/lib/fetchData.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("reset-password-form");
-  const msg = document.getElementById("reset-msg");
-  const API_URL = document.getElementById("api-url").value;
+document.addEventListener("DOMContentLoaded", async () => {
+  const API_URL = document.getElementById("api-url")?.value;
+  console.log("Initial API_URL:", API_URL); // Log pour debug
+  const resetForm = document.getElementById("reset-password-form");
+  const resetMsg = document.getElementById("reset-msg");
 
-  form.addEventListener("submit", async (e) => {
+  // Récupérer le token depuis l'input caché
+  const token = document.getElementById("reset-token")?.value;
+  console.log("Reset token:", token); // Log pour debug
+
+  if (!token) {
+    resetMsg.textContent =
+      "Token manquant. Veuillez utiliser le lien fourni dans l'email.";
+    resetMsg.className = "error";
+    resetForm.style.display = "none";
+    return;
+  }
+
+  resetForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    msg.textContent = "";
+    const formData = new FormData(resetForm);
+    const password = formData.get("password");
+    const confirmPassword = formData.get("confirm-password");
 
-    const email = form.email.value.trim();
-    const password = form.password.value.trim();
-    const confirmPassword = form["confirm-password"].value.trim();
-
-    // Validation simple
-    if (!email || !password || !confirmPassword) {
-      msg.textContent = "Tous les champs sont obligatoires.";
-      msg.style.color = "red";
-      return;
-    }
+    // Vérification des mots de passe
     if (password !== confirmPassword) {
-      msg.textContent = "Les mots de passe ne correspondent pas.";
-      msg.style.color = "red";
-      return;
-    }
-    if (password.length < 6) {
-      msg.textContent = "Le mot de passe doit contenir au moins 6 caractères.";
-      msg.style.color = "red";
+      resetMsg.textContent = "Les mots de passe ne correspondent pas";
+      resetMsg.className = "error";
       return;
     }
 
     try {
-      // Appel API pour demander la réinitialisation
+      console.log(
+        "Sending reset password request to:",
+        `${API_URL}/user/reset-password`
+      );
+      console.log("API URL:", API_URL);
       const result = await fetchData({
-        route: "/api/reset-password",
+        route: "/api/user/reset-password",
         api: API_URL,
         options: {
           method: "POST",
-          body: JSON.stringify({ email, password }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token, password }),
         },
       });
 
       if (result.success) {
-        msg.textContent =
-          "Votre mot de passe a été réinitialisé. Vérifiez votre boîte mail pour le lien de confirmation.";
-        msg.style.color = "green";
-        form.reset();
-      } else {
-        msg.textContent = result.error || "Erreur lors de la réinitialisation.";
-        msg.style.color = "red";
+        resetMsg.textContent = result.message;
+        resetMsg.className = "success";
+        resetForm.style.display = "none";
+
+        // Rediriger vers la page de connexion après 3 secondes
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 3000);
       }
     } catch (error) {
-      msg.textContent = error.message || "Erreur serveur.";
-      msg.style.color = "red";
+      resetMsg.textContent =
+        error.message || "Erreur lors de la réinitialisation";
+      resetMsg.className = "error";
     }
   });
 });
